@@ -150,10 +150,20 @@ static void  init_cols(void)
     PORTD |=  (1<<7 | 1<<6 | 1<<4);
     DDRC  &= ~(1<<7 | 1<<6);
     PORTC |=  (1<<7 | 1<<6);
+#if defined(GH60_REV_CHN)
+    DDRB  &= ~(1<<7 | 1<<5 | 1<<4 | 1<<3 | 1<<1 | 1<<0);
+    PORTB |=  (1<<7 | 1<<5 | 1<<4 | 1<<3 | 1<<1 | 1<<0);
+#else
     DDRB  &= ~(1<<7 | 1<<6 | 1<< 5 | 1<<4 | 1<<3 | 1<<1 | 1<<0);
     PORTB |=  (1<<7 | 1<<6 | 1<< 5 | 1<<4 | 1<<3 | 1<<1 | 1<<0);
+#endif
 }
-
+/*
+ * col: 0   1   2   3   4   5   6   7   8   9   10  11  12  13
+ * pin: F0  F1  E6  C7  C6  B6  D4  B1  B0  B5  B4  D7  D6  B3  (Rev.A)
+ * pin: F0  F1  E6  C7  C6  B6  D4  B1  B7  B5  B4  D7  D6  B3  (Rev.B)
+ * pin: F0  F1  E6  C7  C6  B7  D4  B1  B0  B5  B4  D7  D6  B3  (Rev.CHN)
+*/
 static matrix_row_t read_cols(void)
 {
     return (PINF&(1<<0) ? 0 : (1<<0)) |
@@ -161,10 +171,18 @@ static matrix_row_t read_cols(void)
            (PINE&(1<<6) ? 0 : (1<<2)) |
            (PINC&(1<<7) ? 0 : (1<<3)) |
            (PINC&(1<<6) ? 0 : (1<<4)) |
+#if defined(GH60_REV_CHN)
+           (PINB&(1<<7) ? 0 : (1<<5)) |
+#else
            (PINB&(1<<6) ? 0 : (1<<5)) |
+#endif
            (PIND&(1<<4) ? 0 : (1<<6)) |
            (PINB&(1<<1) ? 0 : (1<<7)) |
+#if defined(GH60_REV_CHN)
+           (PINB&(1<<0) ? 0 : (1<<8)) |
+#else
            ((PINB&(1<<0) && PINB&(1<<7)) ? 0 : (1<<8)) |     // Rev.A and B
+#endif
            (PINB&(1<<5) ? 0 : (1<<9)) |
            (PINB&(1<<4) ? 0 : (1<<10)) |
            (PIND&(1<<7) ? 0 : (1<<11)) |
