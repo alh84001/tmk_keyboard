@@ -32,11 +32,11 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------'
      */
     [0] = KEYMAP(
-        GRV, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, FN4, \
+        ESC, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   MINS,EQL, BSPC, FN4, \
         TAB, Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P,   LBRC,RBRC,BSLS, \
         LCTRL, A,   S,   D,   F,   G,   H,   J,   K,   L,   SCLN,QUOT,    ENT, \
         LSFT,     Z,   X,   C,   V,   B,   N,   M,   COMM,DOT, SLSH, \
-        LALT,FN0,LGUI,          SPC,                     FN0,LEFT,RGHT,UP,DOWN),
+        LCAP,GRV,LGUI,          SPC,                     FN0,LEFT,DOWN,UP,RGHT),
 
 /*
 KEYMAP( \
@@ -102,7 +102,7 @@ KEYMAP( \
      * `-----------------------------------------------------------'
      */
     [3] = KEYMAP(
-        ESC ,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F11, DEL,FN2, \
+        GRV ,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F11, DEL,FN2, \
         TRNS,TRNS,  UP,TRNS,MPRV,MPRV,MNXT,MSTP,TRNS,TRNS,TRNS,WH_U,TRNS,TRNS, \
         TRNS,LEFT,DOWN,RGHT,TRNS,TRNS,TRNS,TRNS,HOME,PGUP,WH_L,WH_R,     TRNS, \
         TRNS,     VOLU,VOLD,MUTE,TRNS,TRNS,TRNS,CALC,END,PGDN,WH_D, \

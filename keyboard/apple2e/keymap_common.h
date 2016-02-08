@@ -34,6 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
 extern const uint16_t fn_actions[];
 
+//1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26
+//C0  C1  R9  C2  C15 C3  C14 C4  C13 C5  C12 C8  R8  R0  C11 R2  R7  R1  R5  R3  R4  C9  C6  C10 C7  R6
+//B6  B7  B5  D0  B4  D1  B3  D2  B2  D3  B1  D4  B0  D5  E7  D6  E6  D7  E0  E1  F0  C0  F1  C1  F2  C2
 /*
         Y0      Y1      Y2      Y3      Y4      Y5      Y6      Y7      Y8      Y9      Y10     Y11     Y12     Y13     Y14     Y15
 X0      ESC     1!      2@      3#      4$      5%      6^      7&      8*      9(      |       |       |       |       |       |
@@ -44,7 +47,8 @@ X4      |       |       |       |       |       |       \|      +=      0)      
 X5      |       |       |       |       |       |       `~      P       [{      ]}      |       |       |       |       |       |
 X6      |       |       |       |       |       |       RETURN  UP      SPACE   '"      |       |       |       |       |       |
 X7      |       |       |       |       |       |       DELETE  DOWN    LEFT    RIGHT   |       |       |       |       |       |
-GND     |       |       |       |       |       |       |       |       |       |       SHIFT   RESET   CNTL    CAPS    LAPPLE  RAPPLE
+GND     |       |       |       |       |       |       |       |       |       |       SHIFT   RESET   CNTL    CAPS    |       |
+VCC     |       |       |       |       |       |       |       |       |       |       |       |       |       |       LAPPLE  RAPPLE
 */
 
 #define KEYMAP( \
@@ -62,7 +66,8 @@ GND     |       |       |       |       |       |       |       |       |       
     {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K41, KC_##K1A, KC_##K1B, KC_##K1C,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO }, \
     {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K2C, KC_##K48, KC_##K43, KC_##K2B,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO }, \
     {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K0D, KC_##K47, KC_##K45, KC_##K46,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO }, \
-    {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K30, KC_##K0E, KC_##K20, KC_##K40, KC_##K42, KC_##K44 } \
+    {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K30, KC_##K0E, KC_##K20, KC_##K40,    KC_NO,    KC_NO }, \
+    {    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO, KC_##K42, KC_##K44 } \
 }
 
 #endif

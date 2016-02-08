@@ -57,8 +57,7 @@ CONFIG_H = config.h
 
 
 # MCU name
-#MCU = at90usb1287
-MCU = atmega32u4
+MCU = at90usb1286
 
 # Processor frequency.
 #     This will define a symbol, F_CPU, in all source code files equal to the
@@ -111,10 +110,10 @@ OPT_DEFS += -DBOOTLOADER_SIZE=4096
 BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = yes	# Mouse keys(+4700)
 EXTRAKEY_ENABLE = yes	# Audio control and System control(+450)
-CONSOLE_ENABLE = yes	# Console for debug(+400)
-COMMAND_ENABLE = yes    # Commands for debug and configuration
+#CONSOLE_ENABLE = yes	# Console for debug(+400)
+#COMMAND_ENABLE = yes    # Commands for debug and configuration
 #SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
-NKRO_ENABLE = yes	# USB Nkey Rollover - not yet supported in LUFA
+#NKRO_ENABLE = yes	# USB Nkey Rollover - not yet supported in LUFA
 
 
 # Optimize size but this may cause error "relocation truncated to fit"

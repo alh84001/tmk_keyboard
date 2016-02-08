@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DESCRIPTION     ANSI Apple IIe keyboard
 
 /* key matrix size */
-#define MATRIX_ROWS 9
+#define MATRIX_ROWS 10
 #define MATRIX_COLS 16
 
 /* define if matrix has ghost */
