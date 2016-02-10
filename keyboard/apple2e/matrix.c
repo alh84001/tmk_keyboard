@@ -135,39 +135,40 @@ uint8_t matrix_key_count(void)
 }
 
 /* Column pin configuration
- * col: 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
- * pin: B6  B7  D0  D1  D5  D3  F1  F2  D4  C0  C1  D7  B1  B2  B3  B4
+ *   D0 D1 D2 D3 D4   C0 C1   E7   F1 F2   B1 B2 B3 B4 B6 B7
  */
 static void  init_cols(void)
 {
     // Input with pull-up(DDR:0, PORT:1)
     DDRF  &= ~(1<<1 | 1<<2);
     PORTF |=  (1<<1 | 1<<2);
+    DDRE  &= ~(1<<7);
+    PORTE |=  (1<<7);
     DDRB  &= ~(1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<6 | 1<<7);
     PORTB |=  (1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<6 | 1<<7);
-    DDRD  &= ~(1<<0 | 1<<1 | 1<<3 | 1<<5 | 1<<7);
-    PORTD |=  (1<<0 | 1<<1 | 1<<3 | 1<<5 | 1<<7);
+    DDRD  &= ~(1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4);
+    PORTD |=  (1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4);
     DDRC  &= ~(1<<0 | 1<<1);
     PORTC |=  (1<<0 | 1<<1);
 }
 /*
-* col: 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
-* pin: B6  B7  D0  D1  D5  D3  F1  F2  D4  C0  C1  D7  B1  B2  B3  B4
+ * col: 0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15
+ * pin: B6  B7  D0  D1  D2  D3  F1  F2  D4  C0  C1  E7  B1  B2  B3  B4
 */
 static matrix_row_t read_cols(void)
 {
     return (PINB&(1<<6) ? 0 : (1<<0)) |
            (PINB&(1<<7) ? 0 : (1<<1)) |
-           (PIND&(1<<2) ? 0 : (1<<2)) |
+           (PIND&(1<<0) ? 0 : (1<<2)) |
            (PIND&(1<<1) ? 0 : (1<<3)) |
-           (PIND&(1<<5) ? 0 : (1<<4)) |
+           (PIND&(1<<2) ? 0 : (1<<4)) |
            (PIND&(1<<3) ? 0 : (1<<5)) |
            (PINF&(1<<1) ? 0 : (1<<6)) |
            (PINF&(1<<2) ? 0 : (1<<7)) |
            (PIND&(1<<4) ? 0 : (1<<8)) |
            (PINC&(1<<0) ? 0 : (1<<9)) |
            (PINC&(1<<1) ? 0 : (1<<10)) |
-           (PIND&(1<<7) ? 0 : (1<<11)) |
+           (PINE&(1<<7) ? 0 : (1<<11)) |
            (PINB&(1<<1) ? 0 : (1<<12)) |
            (PINB&(1<<2) ? 0 : (1<<13)) |
            (PINB&(1<<3) ? 0 : (1<<14)) |
@@ -175,8 +176,7 @@ static matrix_row_t read_cols(void)
 }
 
 /* Row pin configuration
- * row: 0   1   2   3   4   5   6   7   8   9
- * pin: D5  D7  D6  E1  F0  E0  C2  E6  B0  B5
+ *  D5 D6  D7    B0  B5    E0  E1  E6    F0    C2
  */
 static void unselect_rows(void)
 {
@@ -185,8 +185,8 @@ static void unselect_rows(void)
     PORTD &= ~0b11100000;
     DDRB  &= ~0b00100001;
     PORTB &= ~0b00100001;
-    DDRE  &= ~0b00000011;
-    PORTE &= ~0b00000011;
+    DDRE  &= ~0b01000011;
+    PORTE &= ~0b01000011;
     DDRF  &= ~0b00000001;
     PORTF &= ~0b00000001;
     DDRC  &= ~0b00000100;
